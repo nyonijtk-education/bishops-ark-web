@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bishop's Ark | Restoring Safety, Dignity And Hope</title>
+    <style>
+        :root {
+            --primary: #074B43;
+            --primary-dark: #04332D;
+            --secondary: #E5A823;
+            --secondary-hover: #c99017;
+            --light-bg: #F4F7F6;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        /* Top Notification Bar */
+        .top-bar {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 8px 5%;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-urgent {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-urgent:hover {
+            background-color: var(--secondary-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(7, 75, 67, 0.9), rgba(4, 51, 45, 0.95)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1500&q=80') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Scripture Banner */
+        .scripture-banner {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            text-align: center;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* Container & Section Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title div {
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Approach Section */
+        .approach-section {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .approach-section .section-title h3 {
+            color: var(--white);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .approach-card {
+            background: rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .check-icon {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .approach-content h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        /* Get Involved Section */
+        .involved-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .involved-card {
+            background-color: var(--white);
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .involved-card h4 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer / Contact */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 20px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Mobile menu can be expanded as needed */
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div>For Urgent Help / Support Call: <strong>+263 77 240 5511</strong> | <strong>+263 77 245 7295</strong></div>
+        <div>Email: <a href="mailto:bishopstea22@gmail.com">bishopstea22@gmail.com</a></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🕊️</div>
+            <div class="logo-text">
+                <h1>Bishop's Ark</h1>
+                <span>Restoring Safety, Dignity & Hope</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">What We Facilitate</a></li>
+            <li><a href="#approach">Our Approach</a></li>
+            <li><a href="#get-involved">Get Involved</a></li>
+        </ul>
+        <a href="#contact" class="btn-urgent">Get Help Now</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <h2>Restoring Safety, Dignity And Hope</h2>
+        <p>Supporting returning nationals affected by Xenophobia in South Africa through essential aid, transport, and compassionate care.</p>
+        <div class="hero-buttons">
+            <a href="#get-involved" class="btn-primary">Support Our Cause</a>
+            <a href="#services" class="btn-outline">View Services</a>
+        </div>
+    </section>
+
+    <!-- Scripture Banner -->
+    <div class="scripture-banner">
+        "Carry each other's burdens and in this way you will fulfill the law of Christ." — Galatians 6:2
+    </div>
+
+    <!-- Services Section -->
+    <div class="container" id="services">
+        <div class="section-title">
+            <h3>What We Facilitate With</h3>
+            <div></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🚑</div>
+                <h4>Emergency Transport</h4>
+                <p>Safe and reliable transit assistance for affected nationals returning home.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h4>Temporary Shelter</h4>
+                <p>Providing safe, secure, and immediate safe housing for families in transition.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛍️</div>
+                <h4>Food & Essentials</h4>
+                <p>Distributing nutritional support, clothing, and vital daily emergency supplies.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🫂</div>
+                <h4>Psychosocial Support</h4>
+                <p>Trauma-informed counseling and emotional care to process crisis experiences.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💛</div>
+                <h4>Spiritual Support</h4>
+                <p>Faith-based guidance, prayer, and pastoral care to nurture hope and healing.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h4>Case Management & Referrals</h4>
+                <p>Connecting individuals with legal aid, long-term healthcare, and local resources.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approach Section -->
+    <section class="approach-section" id="approach">
+        <div class="container">
+            <div class="section-title">
+                <h3>Our Core Approach</h3>
+                <div></div>
+            </div>
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <div class="check-icon">✓</div>
+                    <div class="approach-content">
+                        <h4>Dignity</h4>
+                        <p>Services offered with deep respect and cultural sensitivity for every individual.</p>
+                    </div>
+                </div>
+                <div class="approach-card">
+                    <div class="check-icon">✓</div>
+                    <div class="approach-content">
+                        <h4>Do No Harm</h4>
+                        <p>Safety and strict confidentiality guide everything we do in the field.</p>
+                    </div>
+                </div>
+                <div class="approach-card">
+                    <div class="check-icon">✓</div>
+                    <div class="approach-content">
+                        <h4>Person Centered</h4>
+                        <p>Support is tailored directly to match each person’s unique needs and situation.</p>
+                    </div>
+                </div>
+                <div class="approach-card">
+                    <div class="check-icon">✓</div>
+                    <div class="approach-content">
+                        <h4>Collaborative</h4>
+                        <p>We work with local community groups, faith networks, NGOs, and local authorities.</p>
+                    </div>
+                </div>
+                <div class="approach-card">
+                    <div class="check-icon">✓</div>
+                    <div class="approach-content">
+                        <h4>Accountable</h4>
+                        <p>Clear feedback & complaint channels, with actively monitored humanitarian outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <div class="container" id="get-involved">
+        <div class="section-title">
+            <h3>How You Can Help</h3>
+            <div></div>
+        </div>
+        <div class="involved-grid">
+            <div class="involved-card">
+                <h4>REFER</h4>
+                <p>Refer everyone in need to our team for emergency screening and immediate support.</p>
+            </div>
+            <div class="involved-card">
+                <h4>DONATE</h4>
+                <p>Contribute financial aid or essential items like food, clothing, and medical supplies.</p>
+            </div>
+            <div class="involved-card">
+                <h4>PARTNER</h4>
+                <p>Partner with us to expand shelter capacity, transport lines, and psychosocial services.</p>
+            </div>
+            <div class="involved-card">
+                <h4>VOLUNTEER</h4>
+                <p>Share your skills in counseling, social work, logistics, legal aid, or administration.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Bishop's Ark</h4>
+                <p>Dedicated to supporting returning nationals affected by Xenophobia in South Africa, providing emergency care, dignity, and path to recovery.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Urgent Contacts</h4>
+                <div class="contact-item">📞 +263 77 240 5511</div>
+                <div class="contact-item">📞 +263 77 245 7295</div>
+                <div class="contact-item">✉️ bishopstea22@gmail.com</div>
+            </div>
+            <div class="footer-col">
+                <h4>Our Principles</h4>
+                <p>Dignity • Safety • Person-Centered • Collaboration • Accountability</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Bishop's Ark. All Rights Reserved. "Carry each other's burdens."</p>
+        </div>
+    </footer>
+
+</body>
+</html>
