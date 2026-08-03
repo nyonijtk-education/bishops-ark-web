@@ -1,6 +1,6 @@
 FROM php:8.4-cli
 
-# Install system dependencies and required PHP extensions
+# Install system dependencies, Node.js, NPM, and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     curl \
+    nodejs \
+    npm \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -18,13 +20,16 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Install dependencies ignoring strict PHP platform requirement checks
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-reqs
+
+# Install NPM packages and build Vite assets
+RUN npm install && npm run build
 
 # Set required permissions for Laravel storage
 RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 8000
 
-# Clear route cache so Livewire Volt works properly
+# Boot application
 CMD ["sh", "-c", "php artisan config:cache && php artisan route:clear && php artisan serve --host=0.0.0.0 --port=8000"]
