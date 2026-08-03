@@ -31,5 +31,5 @@ RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 8000
 
-# Boot application
-CMD ["sh", "-c", "php artisan config:cache && php artisan route:clear && php artisan serve --host=0.0.0.0 --port=8000"]
+# Safely boot application without cache failures
+CMD ["sh", "-c", "php artisan config:clear && php artisan route:clear && php artisan serve --host=0.0.0.0 --port=8000"]
