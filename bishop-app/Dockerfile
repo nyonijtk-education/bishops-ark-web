@@ -1,6 +1,6 @@
 FROM php:8.3-cli
 
-# Install dependencies and required PHP extensions
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -18,8 +18,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Install dependencies and set permissions
-RUN composer install --no-dev --optimize-autoloader
+# Install dependencies while bypassing strict platform version locks
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=php
+
+# Set required permissions for Laravel
 RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 8000
